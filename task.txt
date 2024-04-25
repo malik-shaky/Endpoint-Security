@@ -1,0 +1,49 @@
+1.1 Part A: Process Monitoring
+A security administrator for a Linux server asked for your help to monitor the processes running by
+users on her system. You proposed to group running processes per user, showing the total amount
+of resources consumed by every user.
+Write a shell script that generates a report showing resource utilisation for all system users. Re-
+sources are:
+• Total CPU utilisation, in time units, e.g., seconds, for all processes belonging to the user.
+• Total actual physical memory currently used by all processes belonging to the user (in MB).
+• Total number of files open by all processes belonging to the user.
+Your output report should look like the following, where users are sorted in a descending order
+according to CPU utilisation.
+
+USER 	CPU Utilisation (sec.) 	MEMORY (MB) 	NUMBER OF FILES
+user1
+user2
+. . .
+
+Please note the following:
+1. You need to aggregate the utilisation across all processes belonging to the same user, not just
+reporting the utilisation for each process.
+2. Be sure you understand the output of each Linux command you use. Most of Linux commands
+for process management report the utilisation as a percentage of the lifetime of the process.
+In such case, you cannot use this percentage directly when aggregating total CPU utilisation.
+You will need to convert this percentage into time units (seconds), or find a way to obtain
+the amount of time each process has spent executing. State any assumptions you make.
+3. You are free to use any Linux commands in your script. You might find these commands
+useful: ps, awk, wc, as well as /proc/ file system files that report various timing values for
+running processes (elapsed time, utime, stime, ...etc.).
+
+
+1.2 Part B: File Monitoring
+Monitoring file permissions in Linux is crucial to secure your system. Your Linux administrator
+asked you to list the files with the following permissions for every user:
+• Setuid and Setgid
+• World-writable files and directories
+• Unowned files
+Write a shell script that generates a report showing the total number of files of each category for each
+user. Your output report should look like the following, where users are sorted in a descending
+order according to Setuid, then Setgid, then world-writeable files.
+
+USER 	Num Setuid Files 	Num Setgid Files 	Num World-writable Files
+user1
+user2
+. . .
+Number of unowned files:
+
+Please note that not all files with these permissions set pose a risk. There could be a valid reason
+a file has one or more of these permissions set, e.g., system files. Comment on the list of files and
+state whether there is a security risk.
